@@ -28,19 +28,6 @@ public class BackendController {
         return "backend/employees";
     }
 
-    @GetMapping("/back/clients")
-    public String getClients(Model model, HttpSession session) {
-        if (!isLoggedIn(session)) {
-            return "backend/login";
-        }
-        var items = repo.getClients();
-
-        model.addAttribute("title", "Clients");
-        model.addAttribute("clients", items);
-
-        return "backend/clients";
-    }
-
     @GetMapping("/back/services")
     public String getServices(Model model, HttpSession session) {
         if (!isLoggedIn(session)) {

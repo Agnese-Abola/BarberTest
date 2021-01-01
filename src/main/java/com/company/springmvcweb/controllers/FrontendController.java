@@ -1,6 +1,5 @@
 package com.company.springmvcweb.controllers;
 
-import com.company.springmvcweb.data.model.Appointment;
 import com.company.springmvcweb.data.repository.BarbershopRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

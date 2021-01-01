@@ -2,7 +2,6 @@ package com.company.springmvcweb.controllers;
 
 import com.company.springmvcweb.data.dto.AppointmentDto;
 import com.company.springmvcweb.data.model.Appointment;
-import com.company.springmvcweb.data.model.Schedule;
 import com.company.springmvcweb.data.model.Service;
 import com.company.springmvcweb.data.repository.BarbershopRepository;
 import org.springframework.stereotype.Controller;
@@ -42,7 +41,6 @@ public class FormController {
 
             var newId = repo.save(appointment);
             Appointment data = (Appointment) repo.getAppointment(newId);
-
 
             session.setAttribute("success", "true");
             session.setAttribute("message", "Your appointment for " + data.getService().getName() + " is booked at: " + data.getVStartTime() + ". The total price for the service is: " + data.getService().getVPrice());

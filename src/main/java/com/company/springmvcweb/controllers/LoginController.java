@@ -37,9 +37,6 @@ public class LoginController {
         session.removeAttribute("message");
         model.addAttribute("message", messageItem);
 
-        System.out.println(errorItem);
-        System.out.println(successItem);
-        System.out.println(messageItem);
         return "backend/login";
     }
 

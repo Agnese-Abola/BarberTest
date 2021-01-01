@@ -18,7 +18,6 @@ public class BarbershopRepository {
             factory = new Configuration().
                     configure().
                     addAnnotatedClass(Employee.class).
-                    addAnnotatedClass(Client.class).
                     addAnnotatedClass(Service.class).
                     addAnnotatedClass(WorkTime.class).
                     addAnnotatedClass(Appointment.class).
@@ -35,20 +34,6 @@ public class BarbershopRepository {
 
         try {
             return session.createQuery("FROM Employee").list();
-        } catch (HibernateException exception) {
-            System.err.println(exception);
-        } finally {
-            session.close();
-        }
-
-        return new ArrayList<>();
-    }
-
-    public Iterable<Client> getClients() {
-        var session = factory.openSession();
-
-        try {
-            return session.createQuery("FROM Client").list();
         } catch (HibernateException exception) {
             System.err.println(exception);
         } finally {
