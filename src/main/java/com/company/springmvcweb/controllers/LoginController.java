@@ -1,10 +1,6 @@
 package com.company.springmvcweb.controllers;
 
-import com.company.springmvcweb.data.dto.AppointmentDto;
 import com.company.springmvcweb.data.dto.LoginDto;
-import com.company.springmvcweb.data.model.Appointment;
-import com.company.springmvcweb.data.model.Employee;
-import com.company.springmvcweb.data.model.Service;
 import com.company.springmvcweb.data.repository.BarbershopRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
