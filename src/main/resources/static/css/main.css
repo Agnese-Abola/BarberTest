@@ -1,5 +1,7 @@
-table, th, td {
-    border: solid 1px #000000;
-    /*width: 300px;*/
-    border-collapse: collapse;
+#bg {
+    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c37ccfaf-fd3a-40a4-861c-3be8568171c8/d8hnxva-e320fadf-a861-49d5-baff-8432df7cd820.jpg/v1/fill/w_748,h_1068,q_70,strp/white_background_cyan_smoke_by_zxyion_d8hnxva-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD0xNDYxIiwicGF0aCI6IlwvZlwvYzM3Y2NmYWYtZmQzYS00MGE0LTg2MWMtM2JlODU2ODE3MWM4XC9kOGhueHZhLWUzMjBmYWRmLWE4NjEtNDlkNS1iYWZmLTg0MzJkZjdjZDgyMC5qcGciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.fT8OUG3OHILY0xrEansseDvQ4w7oBCcRNjEJb7E3d4M');
+    background-size: cover;
+}
+#navigation {
+    background: transparent;
 }

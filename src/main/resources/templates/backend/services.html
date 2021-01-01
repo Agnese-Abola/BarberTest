@@ -54,7 +54,8 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <li class="nav-item">
                         <a href="/back/appointments" class="nav-link">
                             <i class="nav-icon far fa-calendar-check"></i>
@@ -110,18 +111,22 @@
                             <div class="row">
                                 <div class="col-12 table-responsive">
                                     <table class="table table-striped">
+                                        <thead class="border-bottom border-dark">
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Duration</th>
                                             <th>Price €</th>
                                         </tr>
+                                        </thead>
+                                        <tbody>
                                         <tr th:each="service: ${services}">
                                             <td th:text="${service.getId()}"/>
                                             <td th:text="${service.getName()}"/>
                                             <td th:text="${service.getVDuration()}"/>
                                             <td th:text="${service.getVPrice()}"/>
                                         </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <!-- /.col -->

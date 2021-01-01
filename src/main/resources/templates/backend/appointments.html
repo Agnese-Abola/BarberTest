@@ -54,7 +54,8 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <li class="nav-item">
                         <a href="/back/appointments" class="nav-link active">
                             <i class="nav-icon far fa-calendar-check"></i>
@@ -110,6 +111,7 @@
                             <div class="row">
                                 <div class="col-12 table-responsive">
                                     <table class="table table-striped">
+                                        <thead class="border-bottom border-dark">
                                         <tr>
                                             <th>Id</th>
                                             <th>Client Name</th>
@@ -119,16 +121,18 @@
                                             <th>Service</th>
                                             <th>Employee Name</th>
                                         <tr/>
-
+                                        </thead>
+                                        <tbody>
                                         <tr th:each="appointment: ${appointments}">
-                                            <td th:text="${appointment.getId()}" />
-                                            <td th:text="${appointment.getClientName()}" />
-                                            <td th:utext="${appointment.getClientFullContacts()}" />
-                                            <td th:text="${appointment.getVStartTime()}" />
-                                            <td th:text="${appointment.getVEndTime()}" />
-                                            <td th:text="${appointment.getService().getName()}" />
-                                            <td th:text="${appointment.getEmployee().getName()}" />
+                                            <td th:text="${appointment.getId()}"/>
+                                            <td th:text="${appointment.getClientName()}"/>
+                                            <td th:utext="${appointment.getClientFullContacts()}"/>
+                                            <td th:text="${appointment.getVStartTime()}"/>
+                                            <td th:text="${appointment.getVEndTime()}"/>
+                                            <td th:text="${appointment.getService().getName()}"/>
+                                            <td th:text="${appointment.getEmployee().getName()}"/>
                                         </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <!-- /.col -->
