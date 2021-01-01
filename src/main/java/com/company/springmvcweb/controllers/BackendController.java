@@ -24,7 +24,10 @@ public class BackendController {
         var items = repo.getEmployees();
 
         model.addAttribute("title", "Employees");
+        model.addAttribute("dashboardlink", "/back/appointments");
         model.addAttribute("employees", items);
+        model.addAttribute("employeeName", repo.getEmployeeName((Integer) session.getAttribute("userId")));
+
         return "backend/employees";
     }
 
@@ -36,7 +39,10 @@ public class BackendController {
         var items = repo.getServices();
 
         model.addAttribute("title", "Services");
+        model.addAttribute("dashboardlink", "/back/appointments");
         model.addAttribute("services", items);
+        model.addAttribute("employeeName", repo.getEmployeeName((Integer) session.getAttribute("userId")));
+
 
         return "backend/services";
     }
@@ -49,7 +55,9 @@ public class BackendController {
         var items = repo.getAppointments();
 
         model.addAttribute("title", "Appointments");
+        model.addAttribute("dashboardlink", "/back/appointments");
         model.addAttribute("appointments", items);
+        model.addAttribute("employeeName", repo.getEmployeeName((Integer) session.getAttribute("userId")));
 
         return "backend/appointments";
     }

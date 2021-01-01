@@ -223,4 +223,22 @@ public class BarbershopRepository {
         }
         return 0;
     }
+
+    public String getEmployeeName(int userId) {
+        var session = factory.openSession();
+
+        try {
+            var result = session.createQuery("FROM Employee WHERE id = :id")
+                    .setParameter("id", userId).list();
+                var employee = (Employee)result.get(0);
+
+                return employee.getName();
+
+        } catch (HibernateException exception) {
+            System.err.println(exception);
+        } finally {
+            session.close();
+        }
+        return "";
+    }
 }
