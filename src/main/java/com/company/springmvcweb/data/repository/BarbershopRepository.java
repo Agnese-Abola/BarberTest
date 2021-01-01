@@ -188,7 +188,7 @@ public class BarbershopRepository {
                         "FROM Appointment WHERE " +
                                 "employee_id = :eId AND " +
                                 "start_time < :et AND " +
-                                "end_time > :st" )
+                                "end_time > :st")
                         .setParameter("eId", employeeId)
                         .setParameter("st", startTime)
                         .setParameter("et", endTime)
@@ -210,7 +210,32 @@ public class BarbershopRepository {
     }
 
 
-    //getAppointment
-    //getSchedule
-    //updateSchedule
+    /**
+     * check username and password for login
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    public int checkUserAndPassword(String username, String password) {
+        var session = factory.openSession();
+
+        try {
+            var result = session.createQuery("FROM Employee WHERE username LIKE :u AND password = :p")
+                    .setParameter("u", username)
+                    .setParameter("p", password)
+                    .list();
+
+            if (!result.isEmpty()) {
+                var employee = (Employee)result.get(0);
+
+                return employee.getId();
+            }
+        } catch (HibernateException exception) {
+            System.err.println(exception);
+        } finally {
+            session.close();
+        }
+        return 0;
+    }
 }

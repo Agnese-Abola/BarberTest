@@ -11,23 +11,32 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<a href="/back/clients" title="Get client list">Clients</a>
-<a href="/back/employees" title="Get employee list">Employees</a>
-<a href="/back/services" title="Get service list">Services</a>
-<a href="/back/appointments" title="Get appointment list">Appointments</a>
-<h1 th:text="${title}"></h1>
-<table class="table table-striped">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-    <tr/>
+<div class="container">
+    <div style="width: 100%; float: left; clear: both">
+        <div style="float: left">
+            <a href="/back/clients" title="Get client list">Clients</a>
+            <a href="/back/employees" title="Get employee list">Employees</a>
+            <a href="/back/services" title="Get service list">Services</a>
+            <a href="/back/appointments" title="Get appointment list">Appointments</a>
+        </div>
+        <div style="float: right">
+            <a href="/back/logout"><i class="glyphicon glyphicon-user"></i>Logout</a>
+        </div>
+    </div>
 
-    <tr th:each="employee: ${employees}">
-        <td th:text="${employee.getId()}" />
-        <td th:text="${employee.getName()}" />
+    <h1 th:text="${title}"></h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        <tr/>
 
-    </tr>
-</table>
+        <tr th:each="employee: ${employees}">
+            <td th:text="${employee.getId()}"/>
+            <td th:text="${employee.getName()}"/>
 
+        </tr>
+    </table>
+</div>
 </body>
 </html>

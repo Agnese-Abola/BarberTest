@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class BackendController {
     private BarbershopRepository repo;
@@ -15,7 +17,10 @@ public class BackendController {
     }
 
     @GetMapping("/back/employees")
-    public String employee(Model model) {
+    public String employee(Model model, HttpSession session) {
+        if (!isLoggedIn(session)) {
+            return "backend/login";
+        }
         var items = repo.getEmployees();
 
         model.addAttribute("title", "Employees");
@@ -24,7 +29,10 @@ public class BackendController {
     }
 
     @GetMapping("/back/clients")
-    public String getClients(Model model) {
+    public String getClients(Model model, HttpSession session) {
+        if (!isLoggedIn(session)) {
+            return "backend/login";
+        }
         var items = repo.getClients();
 
         model.addAttribute("title", "Clients");
@@ -34,7 +42,10 @@ public class BackendController {
     }
 
     @GetMapping("/back/services")
-    public String getServices(Model model) {
+    public String getServices(Model model, HttpSession session) {
+        if (!isLoggedIn(session)) {
+            return "backend/login";
+        }
         var items = repo.getServices();
 
         model.addAttribute("title", "Services");
@@ -44,12 +55,23 @@ public class BackendController {
     }
 
     @GetMapping("/back/appointments")
-    public String getAppointments(Model model) {
+    public String getAppointments(Model model, HttpSession session) {
+        if (!isLoggedIn(session)) {
+            return "backend/login";
+        }
         var items = repo.getAppointments();
 
         model.addAttribute("title", "Appointments");
         model.addAttribute("appointments", items);
 
         return "backend/appointments";
+    }
+
+    private boolean isLoggedIn(HttpSession session) {
+        var obj = (Integer) session.getAttribute("userId");
+        if (obj == null) {
+            obj = 0;
+        }
+        return obj > 0;
     }
 }
