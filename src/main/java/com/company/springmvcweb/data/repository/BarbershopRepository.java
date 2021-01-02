@@ -241,4 +241,18 @@ public class BarbershopRepository {
         }
         return "";
     }
+
+    public Iterable<Schedule> getSchedule() {
+        var session = factory.openSession();
+
+        try {
+            return session.createQuery("FROM Schedule").list();
+        } catch (HibernateException exception) {
+            System.err.println(exception);
+        } finally {
+            session.close();
+        }
+
+        return new ArrayList<>();
+    }
 }

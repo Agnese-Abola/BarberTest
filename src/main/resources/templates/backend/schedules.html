@@ -72,7 +72,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/back/services" class="nav-link active">
+                        <a href="/back/services" class="nav-link">
                             <i class="nav-icon far fa-address-book"></i>
                             <p>
                                 Services
@@ -80,7 +80,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/back/schedules" class="nav-link">
+                        <a href="/back/schedules" class="nav-link active">
                             <i class="nav-icon far fa-clipboard"></i>
                             <p>
                                 Schedule
@@ -119,16 +119,17 @@
                                 <div class="col-12 table-responsive">
                                     <table class="table table-striped">
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Duration</th>
-                                            <th>Price €</th>
+                                            <th>Employee Name</th>
+                                            <th>Day</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
                                         </tr>
-                                        <tr th:each="service: ${services}">
-                                            <td th:text="${service.getId()}"/>
-                                            <td th:text="${service.getName()}"/>
-                                            <td th:text="${service.getVDuration()}"/>
-                                            <td th:text="${service.getVPrice()}"/>
+                                        <tr th:each="schedule: ${schedules}">
+                                            <td th:text="${schedule.getEmployeeName()}"/>
+                                            <td th:text="${schedule.getDayOfWeek()}"/>
+                                            <td th:text="${schedule.getVStartTime()}"/>
+                                            <td th:text="${schedule.getVEndTime()}"/>
+
                                         </tr>
                                     </table>
                                 </div>

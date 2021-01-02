@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
-import javax.servlet.http.HttpSession;
+import java.time.DayOfWeek;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @Table(name = "schedule")
 public class Schedule {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "employee_id")
@@ -26,6 +26,24 @@ public class Schedule {
     private int endTime;
     @Column(name = "day_id")
     private int dayId;
+
+    @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id", insertable = false, updatable = false)
+    private Employee employee;
+
+    public String getDayOfWeek() {
+        return DayOfWeek.of(dayId).toString();
+    }
+    public String getVStartTime() {
+        return Helper.adCharToString(startTime, 2, ":");
+    }
+    public String getVEndTime() {
+        return Helper.adCharToString(endTime, 2, ":");
+    }
+
+    public String getEmployeeName() {
+        return employee.getName();
+    }
 
 }
 

@@ -62,6 +62,21 @@ public class BackendController {
         return "backend/appointments";
     }
 
+    @GetMapping("/back/schedules")
+    public String getSchedule(Model model, HttpSession session) {
+        if (!isLoggedIn(session)) {
+            return "backend/login";
+        }
+        var items = repo.getSchedule();
+
+        model.addAttribute("title", "Schedules");
+        model.addAttribute("dashboardlink", "/back/appointments");
+        model.addAttribute("schedules", items);
+        model.addAttribute("employeeName", repo.getEmployeeName((Integer) session.getAttribute("userId")));
+
+        return "backend/schedules";
+    }
+
     private boolean isLoggedIn(HttpSession session) {
         var obj = (Integer) session.getAttribute("userId");
         if (obj == null) {
