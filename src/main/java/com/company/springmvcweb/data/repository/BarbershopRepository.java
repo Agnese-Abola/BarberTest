@@ -212,7 +212,7 @@ public class BarbershopRepository {
                     .list();
 
             if (!result.isEmpty()) {
-                var employee = (Employee)result.get(0);
+                var employee = (Employee) result.get(0);
 
                 return employee.getId();
             }
@@ -230,9 +230,9 @@ public class BarbershopRepository {
         try {
             var result = session.createQuery("FROM Employee WHERE id = :id")
                     .setParameter("id", userId).list();
-                var employee = (Employee)result.get(0);
+            var employee = (Employee) result.get(0);
 
-                return employee.getName();
+            return employee.getName();
 
         } catch (HibernateException exception) {
             System.err.println(exception);
@@ -242,7 +242,7 @@ public class BarbershopRepository {
         return "";
     }
 
-    public Iterable<Schedule> getSchedule() {
+    public Iterable<Schedule> getSchedules() {
         var session = factory.openSession();
 
         try {
@@ -254,5 +254,55 @@ public class BarbershopRepository {
         }
 
         return new ArrayList<>();
+    }
+
+    public Schedule getSchedule(int id) {
+        var session = factory.openSession();
+
+        try {
+            var schedule = session.get(Schedule.class, id);
+            return schedule;
+        } catch (HibernateException exception) {
+            System.err.println(exception);
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public void update(@NonNull Object item) {
+        var session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.update(item);
+            tx.commit();
+        } catch (HibernateException exception) {
+            if(tx != null) {
+                tx.rollback();
+            }
+            System.err.println(exception);
+        } finally {
+            session.close();
+        }
+    }
+
+    public void delete(@NonNull Object item) {
+        var session = factory.openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            session.delete(item);
+            tx.commit();
+        } catch (HibernateException exception) {
+            if(tx != null) {
+                tx.rollback();
+            }
+            System.err.println(exception);
+        } finally {
+            session.close();
+        }
     }
 }

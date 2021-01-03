@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -113,52 +118,65 @@
                 <div class="row">
                     <div class="col-12">
 
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="/back/schedules/new" type="button" class="btn btn-primary">New</a>
-                            </div>
-                        </div>
-
-                        <!-- Main content -->
-                        <div class="invoice p-3 mb-3">
-                            <!-- Table row -->
+                        <form action="/back/schedules/update" method="post" name="updateScheduleDto">
+                            <input type="hidden" name="id" th:value="${oldId}">
                             <div class="row">
-                                <div class="col-12 table-responsive">
-                                    <table class="table table-striped">
-                                        <tr>
-                                            <th>Employee Name</th>
-                                            <th>Day</th>
-                                            <th>Start Time</th>
-                                            <th>End Time</th>
-                                            <th></th>
-                                        </tr>
-                                        <tr th:each="schedule: ${schedules}">
-                                            <td th:text="${schedule.getEmployeeName()}"/>
-                                            <td th:text="${schedule.getDayOfWeek()}"/>
-                                            <td th:text="${schedule.getVStartTime()}"/>
-                                            <td th:text="${schedule.getVEndTime()}"/>
-                                            <td>
-                                                <a th:if="${schedule.getEmployeeId() == userId}"
-                                                   th:href="${'/back/schedules/edit/' +schedule.getId()}"
-                                                   class="btn btn-app">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </a>
-                                                <a th:if="${schedule.getEmployeeId() == userId}"
-                                                   th:href="${'/back/schedules/delete/' +schedule.getId()}"
-                                                   class="btn btn-app">
-                                                    <i class="fas fa-trash"></i> Delete
-                                                </a>
-                                            </td>
-
-                                        </tr>
-                                    </table>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>Select Day</label>
+                                        <select class="form-control" name="day">
+                                            <option value="1" th:selected="${oldDayId == 1}">Monday</option>
+                                            <option value="2" th:selected="${oldDayId == 2}">Tuesday</option>
+                                            <option value="3" th:selected="${oldDayId == 3}">Wednesday</option>
+                                            <option value="4" th:selected="${oldDayId == 4}">Thursday</option>
+                                            <option value="5" th:selected="${oldDayId == 5}">Friday</option>
+                                            <option value="6" th:selected="${oldDayId == 6}">Saturday</option>
+                                            <option value="7" th:selected="${oldDayId == 7}">Sunday</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <!-- /.col -->
+                                <div class="col-4">
+                                    <!--input start time-->
+                                    <div class="form-group">
+                                        <label>Start time</label>
+
+                                        <div class="input-group date" id="starttime" data-target-input="nearest">
+                                            <input th:value="${oldStartTime}" type="text" class="form-control datetimepicker-input timepicker"
+                                                   data-target="#starttime" name="startTime">
+                                            <div class="input-group-append" data-target="#starttime"
+                                                 data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                            </div>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <!--input end time-->
+                                    <div class="form-group">
+                                        <label>End time</label>
+
+                                        <div class="input-group date" id="endtime" data-target-input="nearest">
+                                            <input th:value="${oldEndTime}" type="text" class="form-control datetimepicker-input timepicker"
+                                                   data-target="#endtime" name="endTime">
+                                            <div class="input-group-append" data-target="#endtime"
+                                                 data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                            </div>
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.invoice -->
-                    </div><!-- /.col -->
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </section>
@@ -187,7 +205,12 @@
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
+<!-- Select2 -->
+<script src="/plugins/select2/js/select2.full.min.js"></script>
+<!-- date-range-picker -->
+<script src="/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
+
 </body>
 </html>
