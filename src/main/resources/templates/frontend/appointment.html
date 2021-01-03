@@ -10,91 +10,151 @@
             integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
             crossorigin="anonymous"></script>
 </head>
-<body>
-<style>
-    body {
-        background-image: url('img/1025.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-    }
-</style>
-
-
+<body id="bg">
 <div class="container">
-    <br/>
-    <div th:if="${error == true}" class="alert alert-danger" role="alert" th:text="${message}"></div>
-    <div th:if="${success == true}" class="alert alert-success" role="alert" th:text="${message}"></div>
+    <div class="container-fluid" style="margin-top: 30px">
+        <div class="text-center">
+            <div class="position-relative">
+                <br/>
+                <div th:if="${error == true}" class="alert alert-danger" role="alert" th:text="${message}"></div>
+                <div th:if="${success == true}" class="alert alert-success" role="alert" th:text="${message}"></div>
+                <br>
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-scissors" viewBox="0 0 16 16">
+                    <path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61 3.5 3.5zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0zm7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/>
+                </svg>
+                <h1 th:text="${title}" align="center"></h1>
+                <form action="/appointment/create" method="post" name="updateDto">
+                    <div class="accordion accordion-flush" style="margin: 80px">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne" style="background: transparent">
+                                    <b>Employee</b>
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                 aria-labelledby="flush-headingOne">
+                                <div class="accordion-body">
+                                    <input class="action-btn btn-light btn-lg" type="button" style="margin: 5px" th:each="employee: ${employeesList}" th:value="${employee.getName()}" required>
 
-    <h1 th:text="${title}"></h1>
+<!--                                    <div class="form-group">-->
+<!--                                        <div class="dropdown">-->
+<!--                                            <label for="employee-list" class="col col-form-label"></label>-->
+<!--                                            <select class="form-element" id="employee-list" name="employee" required>-->
+<!--                                                <option th:each="employee: ${employeesList}"-->
+<!--                                                        th:value="${employee.getId()}"-->
+<!--                                                        th:text="${employee.getName()}"></option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                            aria-controls="flush-collapseTwo" style="background: transparent">
+                                        <b>Service</b>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                     aria-labelledby="flush-headingTwo">
+                                    <div class="accordion-body">
+                                        <input class="action-btn btn-light btn-lg" type="button" style="margin: 5px" th:each="service: ${servicesList}" th:value="${service.getName()}" required>
 
-    <form action="/appointment/create" method="post" name="updateDto">
-        <div class="row">
-            <div class="col-sm">
-                <div class="dropdown">
-                    <label for="employee-list" class="col-2 col-form-label">Employees</label>
-                    <select class="form-element" id="employee-list" name="employee" required>
-                        <option th:each="employee: ${employeesList}" th:value="${employee.getId()}"
-                                th:text="${employee.getName()}"></option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm">
+<!--                                        <div class="dropdown">-->
+<!--                                            <label for="service-list" class="col col-form-label">-->
+<!--                                                <select id="service-list" name="service" required>-->
+<!--                                                    <option th:each="service: ${servicesList}"-->
+<!--                                                            th:value="${service.getId()}"-->
+<!--                                                            th:text="${service.getName()}"></option>-->
+<!--                                                </select>-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                            aria-controls="flush-collapseThree" style="background: transparent">
+                                        <b>Date and Time</b>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                     aria-labelledby="flush-headingThree">
+                                    <div class="accordion-body">
+                                        <div class="form-group">
+                                            <label for="appointment-date" class="col col-form-label"></label>
+                                            <input class="form-control" type="datetime-local" value=""
+                                                   id="appointment-date" name="dateAndTime" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#flush-collapseFour" aria-expanded="false"
+                                            aria-controls="flush-collapseFour" style="background: transparent">
+                                        <b>Your information</b>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse"
+                                     aria-labelledby="flush-headingFour">
+                                    <div class="accordion-body">
+                                        <form class="row g-3">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="client-name" class="col-2 col-form-label">Name</label>
+                                                    <input type="text" class="form-control" placeholder="Name"
+                                                           name="name" id="client-name" required>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="client-surname"
+                                                           class="col-2 col-form-label">Surname</label>
+                                                    <input type="text" class="form-control" placeholder="Surname"
+                                                           name="surname" id="client-surname" required>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <label for="client-phone" class="col-2 col-form-label">Phone</label>
+                                                    <input type="text" class="form-control" placeholder="+371"
+                                                           name="phone" id="client-phone" required>
+                                                </div>
+                                                <div class="col">
+                                                    <label for="client-email" class="col-2 col-form-label">email</label>
+                                                    <input type="email" class="form-control" placeholder="email"
+                                                           id="client-email" name="email">
+                                                </div>
+                                            </div>
+                                            <div class="col-12" style="text-align: left">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="gridCheck"
+                                                           required>
+                                                    <label class="form-check-label" for="gridCheck">
+                                            <span style="color: red">
+                                                    I agree to personal data processing. It do not allows enterprise to share your information and complies to GDPR rules
+                                            </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto my-1">
+                                                <input type="submit" class="action-btn btn-outline-success btn-lg"
+                                                       value="Book"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm">
-                <div class="dropdown">
-                    <label for="service-list" class="col-2 col-form-label">Service</label>
-                    <select class="form-element" id="service-list" name="service" required>
-                        <option th:each="service: ${servicesList}" th:value="${service.getId()}"
-                                th:text="${service.getName()}"></option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="form-group row">
-                    <label for="appointment-time" class="col col-form-label">Date and time</label>
-                        <input class="form-control" type="datetime-local" value=" "
-                               id="appointment-time" name="dateAndTime" required>
-                </div>
-            </div>
-        </div>
-        <br>
-
-        <h2>Client info</h2>
-        <div class="row">
-            <div class="col">
-                <label for="client-name" class="col-2 col-form-label">Name</label>
-                <input type="text" class="form-control" placeholder="Name" id="client-name" name="name" required>
-            </div>
-            <div class="col">
-                <label for="client-surname" class="col-2 col-form-label">Surname</label>
-                <input type="text" class="form-control" placeholder="Surname" id="client-surname" name="surname">
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col">
-                <label for="client-phone" class="col-2 col-form-label">Phone</label>
-                <input type="text" class="form-control" placeholder="Phone" id="client-phone" name="phone" required>
-            </div>
-            <div class="col">
-                <label for="client-email" class="col-2 col-form-label">E-mail</label>
-                <input type="email" class="form-control" placeholder="E-mail" id="client-email" name="email">
-            </div>
-        </div>
-
-        <div class="col-auto my-1">
-            <input type="submit" class="btn btn-primary" value="Book"/>
-        </div>
-    </form>
+    </div>
 </div>
 
 </body>

@@ -10,46 +10,39 @@
             integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
             crossorigin="anonymous"></script>
 </head>
-<body>
-<style>
-    body {
-        background-image: url('img/1025.jpg');
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-    }
-</style>
-<div class="container-fluid" style="margin-top: 200px">
+<body id="bg">
+<div class="container-fluid" style="margin-top: 100px">
     <div class="text-center">
         <div class="position-relative">
-            <img src="img/logo.png" class="img-fluid" alt=" "><br>
-                    <a class="nav-link" aria-current="page" href="/appointment">
-                        <button type="button" class="btn btn-outline-dark btn-lg" style="margin-top: 100px">Make appointment</button>
-                    </a>
+            <img src="img/logo.png"><br>
+            <a class="nav-link" aria-current="page" href="/appointment">
+                <button type="button" class="btn btn-outline-dark btn-lg" style="margin-top: 60px">Make appointment
+                </button>
+            </a>
         </div>
     </div>
     <div class="fixed-bottom">
-        <table class="table">
+        <table class="table" align="center" style="width: 80%">
             <thead>
             <tr class="text-center">
-                <th scope="col">ADDRESS</th>
-                <th scope="col">PHONE</th>
+                <th scope="col" class="border-end">ADDRESS</th>
                 <th scope="col">WORKING HOURS</th>
+                <th scope="col" class="border-start">PHONE</th>
             </tr>
             </thead>
             <tbody>
             <tr class="text-center">
-                <td>Brīvības 62; Rīga</td>
-                <td>234-567-89</td>
+                <td class="border-end">Brīvības 62; Rīga</td>
                 <td>
-                    <table class="table table-striped">
+                    <table class="table" style="width: 50%" align="center">
                         <tr th:each="wt: ${worktime}">
                             <td th:text="${wt.getName()}"/>
-                            <td th:text="${wt.getVStartTime()}"/>
-                            <td th:text="${wt.getVEndTime()}"/>
+                            <td th:text="${wt.getVStartTime()}" th:align="right"/>
+                            <td th:text="'- '+${wt.getVEndTime()}" th:align="left"/>
                         </tr>
                     </table>
                 </td>
+                <td class="border-start">234-567-89</td>
             </tr>
             </tbody>
         </table>

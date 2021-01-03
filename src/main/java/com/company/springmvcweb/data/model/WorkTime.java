@@ -40,7 +40,7 @@ public class WorkTime {
      * @return
      */
     public String getVEndTime() {
-        return Helper.adCharToString(startTime, 2, ":");
+        return Helper.adCharToString(endTime, 2, ":");
     }
 }
 
