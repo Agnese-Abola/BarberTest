@@ -19,7 +19,9 @@
                 <div th:if="${error == true}" class="alert alert-danger" role="alert" th:text="${message}"></div>
                 <div th:if="${success == true}" class="alert alert-success" role="alert" th:text="${message}"></div>
                 <br>
-                <img src="img/sc.png" class="img-fluid" alt=" " width="60px"><br>
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-scissors" viewBox="0 0 16 16">
+                    <path d="M3.5 3.5c-.614-.884-.074-1.962.858-2.5L8 7.226 11.642 1c.932.538 1.472 1.616.858 2.5L8.81 8.61l1.556 2.661a2.5 2.5 0 1 1-.794.637L8 9.73l-1.572 2.177a2.5 2.5 0 1 1-.794-.637L7.19 8.61 3.5 3.5zm2.5 10a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0zm7 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0z"/>
+                </svg>
                 <h1 th:text="${title}" align="center"></h1>
                 <form action="/appointment/create" method="post" name="updateDto">
                     <div class="accordion accordion-flush" style="margin: 80px">
@@ -34,16 +36,18 @@
                             <div id="flush-collapseOne" class="accordion-collapse collapse"
                                  aria-labelledby="flush-headingOne">
                                 <div class="accordion-body">
-                                    <div class="form-group">
-                                        <div class="dropdown">
-                                            <label for="employee-list" class="col col-form-label"></label>
-                                            <select class="form-element" id="employee-list" name="employee" required>
-                                                <option th:each="employee: ${employeesList}"
-                                                        th:value="${employee.getId()}"
-                                                        th:text="${employee.getName()}"></option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <input class="action-btn btn-light btn-lg" type="button" style="margin: 5px" th:each="employee: ${employeesList}" th:value="${employee.getName()}" required>
+
+<!--                                    <div class="form-group">-->
+<!--                                        <div class="dropdown">-->
+<!--                                            <label for="employee-list" class="col col-form-label"></label>-->
+<!--                                            <select class="form-element" id="employee-list" name="employee" required>-->
+<!--                                                <option th:each="employee: ${employeesList}"-->
+<!--                                                        th:value="${employee.getId()}"-->
+<!--                                                        th:text="${employee.getName()}"></option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                             <div class="accordion-item">
@@ -57,15 +61,17 @@
                                 <div id="flush-collapseTwo" class="accordion-collapse collapse"
                                      aria-labelledby="flush-headingTwo">
                                     <div class="accordion-body">
-                                        <div class="dropdown">
-                                            <label for="service-list" class="col col-form-label">
-                                                <select id="service-list" name="service" required>
-                                                    <option th:each="service: ${servicesList}"
-                                                            th:value="${service.getId()}"
-                                                            th:text="${service.getName()}"></option>
-                                                </select>
-                                            </label>
-                                        </div>
+                                        <input class="action-btn btn-light btn-lg" type="button" style="margin: 5px" th:each="service: ${servicesList}" th:value="${service.getName()}" required>
+
+<!--                                        <div class="dropdown">-->
+<!--                                            <label for="service-list" class="col col-form-label">-->
+<!--                                                <select id="service-list" name="service" required>-->
+<!--                                                    <option th:each="service: ${servicesList}"-->
+<!--                                                            th:value="${service.getId()}"-->
+<!--                                                            th:text="${service.getName()}"></option>-->
+<!--                                                </select>-->
+<!--                                            </label>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +143,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto my-1">
-                                                <input type="submit" class="btn btn-outline-success btn-lg"
+                                                <input type="submit" class="action-btn btn-outline-success btn-lg"
                                                        value="Book"/>
                                             </div>
                                         </form>
