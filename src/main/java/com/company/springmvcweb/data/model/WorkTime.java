@@ -24,21 +24,10 @@ public class WorkTime {
     @Column(name = "end_time")
     private long endTime;
 
-
-    /**
-     * gets visual working hours
-     *
-     * @return
-     */
     public String getVStartTime() {
         return Helper.adCharToString(startTime, 2, ":");
     }
 
-    /**
-     * gets visual working hours
-     *
-     * @return
-     */
     public String getVEndTime() {
         return Helper.adCharToString(endTime, 2, ":");
     }

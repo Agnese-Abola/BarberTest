@@ -48,7 +48,8 @@
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" th:text="${employeeName}" class="d-block"></a>
+                    <span th:text="${'Welcome, ' +employeeName + '!'}" class="d-block"
+                          style="font-weight: bold; color: #ffffff"></span>
                 </div>
             </div>
 
@@ -121,14 +122,16 @@
                                     <table class="table table-striped">
                                         <thead class="border-bottom border-dark">
                                         <tr>
-                                            <th>Id</th>
                                             <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
                                         <tr/>
                                         </thead>
                                         <tbody>
                                         <tr th:each="employee: ${employees}">
-                                            <td th:text="${employee.getId()}"/>
                                             <td th:text="${employee.getName()}"/>
+                                            <td th:text="${employee.getEmail()}"/>
+                                            <td th:text="${employee.getPhone()}"/>
                                         </tr>
                                         </tbody>
                                     </table>

@@ -53,7 +53,6 @@ public class BarbershopRepository {
         } finally {
             session.close();
         }
-
         return new ArrayList<>();
     }
 
@@ -67,21 +66,15 @@ public class BarbershopRepository {
         } finally {
             session.close();
         }
-
         return new ArrayList<>();
     }
 
-    /**
-     * get service duration
-     *
-     * @param serviceId
-     * @return
-     */
     public int getServiceTime(int serviceId) {
         var session = factory.openSession();
 
         try {
-            var result = session.createQuery("SELECT duration FROM Service WHERE id = :s").setParameter("s", serviceId).list();
+            var result = session.createQuery("SELECT duration FROM Service WHERE id = :s")
+                    .setParameter("s", serviceId).list();
             if (result != null) {
                 return (int) result.get(0);
             }
@@ -90,15 +83,9 @@ public class BarbershopRepository {
         } finally {
             session.close();
         }
-
         return 0;
     }
 
-    /**
-     * saves Object to database
-     *
-     * @param item
-     */
     public int save(@NonNull Object item) {
         var session = factory.openSession();
         Transaction tx = null;
@@ -152,7 +139,6 @@ public class BarbershopRepository {
         var startInHoursAndMinutes = Helper.convertDate(startTime, "HHmm");
         var endInHoursAndMinutes = Helper.convertDate(endTime, "HHmm");
 
-
         var session = factory.openSession();
 
         try {
@@ -179,29 +165,18 @@ public class BarbershopRepository {
                         .setParameter("et", endTime)
                         .list();
 
-
                 if (result1.isEmpty()) {
                     return true;
                 }
             }
-
         } catch (HibernateException exception) {
             System.err.println(exception);
         } finally {
             session.close();
         }
-
         return false;
     }
 
-
-    /**
-     * check username and password for login
-     *
-     * @param username
-     * @param password
-     * @return
-     */
     public int checkUserAndPassword(String username, String password) {
         var session = factory.openSession();
 
@@ -252,7 +227,6 @@ public class BarbershopRepository {
         } finally {
             session.close();
         }
-
         return new ArrayList<>();
     }
 
@@ -279,7 +253,7 @@ public class BarbershopRepository {
             session.update(item);
             tx.commit();
         } catch (HibernateException exception) {
-            if(tx != null) {
+            if (tx != null) {
                 tx.rollback();
             }
             System.err.println(exception);
@@ -297,12 +271,40 @@ public class BarbershopRepository {
             session.delete(item);
             tx.commit();
         } catch (HibernateException exception) {
-            if(tx != null) {
+            if (tx != null) {
                 tx.rollback();
             }
             System.err.println(exception);
         } finally {
             session.close();
         }
+    }
+
+    public Service getService(int id) {
+        var session = factory.openSession();
+
+        try {
+            var service = session.get(Service.class, id);
+            return service;
+        } catch (HibernateException exception) {
+            System.err.println(exception);
+        } finally {
+            session.close();
+        }
+        return null;
+    }
+
+    public Employee getEmployee(int id) {
+        var session = factory.openSession();
+
+        try {
+            var employee = session.get(Employee.class, id);
+            return employee;
+        } catch (HibernateException exception) {
+            System.err.println(exception);
+        } finally {
+            session.close();
+        }
+        return null;
     }
 }

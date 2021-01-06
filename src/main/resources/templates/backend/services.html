@@ -48,51 +48,52 @@
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" th:text="${employeeName}" class="d-block"></a>
+                    <span th:text="${'Welcome, ' +employeeName + '!'}" class="d-block"
+                          style="font-weight: bold; color: #ffffff"></span>
                 </div>
             </div>
 
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
-                    <li class="nav-item">
-                        <a href="/back/appointments" class="nav-link">
-                            <i class="nav-icon far fa-calendar-check"></i>
-                            <p>
-                                Appointments
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/back/employees" class="nav-link">
-                            <i class="nav-icon far fa-user"></i>
-                            <p>
-                                Employees
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/back/services" class="nav-link active">
-                            <i class="nav-icon far fa-address-book"></i>
-                            <p>
-                                Services
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/back/schedules" class="nav-link">
-                            <i class="nav-icon far fa-clipboard"></i>
-                            <p>
-                                Schedule
-                            </p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="/back/appointments" class="nav-link">
+                                <i class="nav-icon far fa-calendar-check"></i>
+                                <p>
+                                    Appointments
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/back/employees" class="nav-link">
+                                <i class="nav-icon far fa-user"></i>
+                                <p>
+                                    Employees
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/back/services" class="nav-link active">
+                                <i class="nav-icon far fa-address-book"></i>
+                                <p>
+                                    Services
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/back/schedules" class="nav-link">
+                                <i class="nav-icon far fa-clipboard"></i>
+                                <p>
+                                    Schedule
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
@@ -113,6 +114,13 @@
                 <div class="row">
                     <div class="col-12">
 
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="/back/services/new" type="button" class="btn btn-primary">Create new</a>
+                            </div>
+                        </div>
+                        </br>
+
                         <!-- Main content -->
                         <div class="invoice p-3 mb-3">
                             <!-- Table row -->
@@ -121,18 +129,27 @@
                                     <table class="table table-striped">
                                         <thead class="border-bottom border-dark">
                                         <tr>
-                                            <th>Id</th>
                                             <th>Name</th>
                                             <th>Duration</th>
                                             <th>Price €</th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr th:each="service: ${services}">
-                                            <td th:text="${service.getId()}"/>
                                             <td th:text="${service.getName()}"/>
                                             <td th:text="${service.getVDuration()}"/>
                                             <td th:text="${service.getVPrice()}"/>
+                                            <td class="action-column">
+                                                <a th:href="${'/back/services/edit/' +service.getId()}"
+                                                   class="btn btn-outline-info">
+                                                    <img th:src="@{/img/edit.svg}">
+                                                </a>
+                                                <a th:href="${'/back/services/delete/' +service.getId()}"
+                                                   class="btn btn-outline-danger">
+                                                    <img th:src="@{/img/trash.svg}">
+                                                </a>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>

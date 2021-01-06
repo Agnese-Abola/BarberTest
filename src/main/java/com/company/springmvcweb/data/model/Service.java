@@ -20,7 +20,7 @@ import java.util.List;
 @Table(name = "service")
 public class Service {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
     @Column(name = "name")
@@ -28,16 +28,8 @@ public class Service {
     @Column(name = "duration")
     private int duration;
     @Column(name = "price")
-    /**
-     * price in cents
-     */
     private int price;
 
-    /**
-     * format time into visual hours and minutes
-     *
-     * @return
-     */
     public String getVDuration() {
         int m = duration % 60;
         int h = (duration - m) / 60;
@@ -45,22 +37,10 @@ public class Service {
         return h + "h " + (m < 10 ? "0" : "") + m + "m";
     }
 
-    /**
-     * format visual price in euros and cents
-     *
-     * @return
-     */
     public String getVPrice() {
         return Helper.adCharToString(price, 2, ".");
     }
 
-    /**
-     * calculates start and end time
-     *
-     * @param dateTime
-     * @param serviceId
-     * @return
-     */
     public List<Long> calculateServiceTimes(String dateTime, int serviceId) {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         long startTime = 0;
@@ -78,7 +58,6 @@ public class Service {
 
         //calculates service end time
         long endTime = startTime + (serviceDuration * 60);
-
         return List.of(startTime, endTime);
 
     }

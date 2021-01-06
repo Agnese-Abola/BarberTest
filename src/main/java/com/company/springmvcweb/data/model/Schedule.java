@@ -1,7 +1,6 @@
 package com.company.springmvcweb.data.model;
 
 import com.company.springmvcweb.data.helper.Helper;
-import com.company.springmvcweb.data.repository.BarbershopRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,7 +39,6 @@ public class Schedule {
     public String getVEndTime() {
         return Helper.adCharToString(endTime, 2, ":");
     }
-
     public String getEmployeeName() {
         return employee.getName();
     }

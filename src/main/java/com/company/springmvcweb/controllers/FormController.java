@@ -5,11 +5,9 @@ import com.company.springmvcweb.data.model.Appointment;
 import com.company.springmvcweb.data.model.Service;
 import com.company.springmvcweb.data.repository.BarbershopRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -22,7 +20,7 @@ public class FormController {
     }
 
     @PostMapping("/appointment/create")
-    public ModelAndView appointmentSave(@ModelAttribute("updateDto") AppointmentDto dto, Model model, HttpSession session) {
+    public ModelAndView appointmentSave(@ModelAttribute("updateDto") AppointmentDto dto, HttpSession session) {
         Service service = new Service();
         Appointment appointment = new Appointment();
 
@@ -32,7 +30,7 @@ public class FormController {
         var serviceTimes = service.calculateServiceTimes(dto.getDateAndTime(), dto.getService());
         var check = repo.checkEmployeeAvailability(dto.getEmployee(), serviceTimes.get(0), serviceTimes.get(1));
 
-        if (check == true) {
+        if (check) {
             appointment.setStartTime(serviceTimes.get(0));
             appointment.setEndTime(serviceTimes.get(1));
             appointment.setClientName(dto.getName() + " " + dto.getSurname());
@@ -49,7 +47,6 @@ public class FormController {
             session.setAttribute("message", "Invalid time chosen");
 
         }
-
         return new ModelAndView("redirect:/appointment");
     }
 }

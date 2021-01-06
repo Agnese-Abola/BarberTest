@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,7 +48,8 @@
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" th:text="${employeeName}" class="d-block"></a>
+                    <span th:text="${'Welcome, ' +employeeName + '!'}" class="d-block"
+                          style="font-weight: bold; color: #ffffff"></span>
                 </div>
             </div>
 
@@ -115,9 +116,10 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <a href="/back/schedules/new" type="button" class="btn btn-primary">New</a>
+                                <a href="/back/schedules/new" type="button" class="btn btn-primary">Create new</a>
                             </div>
                         </div>
+                        </br>
 
                         <!-- Main content -->
                         <div class="invoice p-3 mb-3">
@@ -137,16 +139,16 @@
                                             <td th:text="${schedule.getDayOfWeek()}"/>
                                             <td th:text="${schedule.getVStartTime()}"/>
                                             <td th:text="${schedule.getVEndTime()}"/>
-                                            <td>
+                                            <td class="action-column">
                                                 <a th:if="${schedule.getEmployeeId() == userId}"
                                                    th:href="${'/back/schedules/edit/' +schedule.getId()}"
-                                                   class="btn btn-app">
-                                                    <i class="fas fa-edit"></i> Edit
+                                                   class="btn btn-outline-info">
+                                                    <img th:src="@{/img/edit.svg}">
                                                 </a>
                                                 <a th:if="${schedule.getEmployeeId() == userId}"
                                                    th:href="${'/back/schedules/delete/' +schedule.getId()}"
-                                                   class="btn btn-app">
-                                                    <i class="fas fa-trash"></i> Delete
+                                                   class="btn btn-outline-danger">
+                                                    <img th:src="@{/img/trash.svg}">
                                                 </a>
                                             </td>
 

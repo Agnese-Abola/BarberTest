@@ -4,7 +4,6 @@ import com.company.springmvcweb.data.repository.BarbershopRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -33,14 +32,14 @@ public class FrontendController {
         model.addAttribute("servicesList", repo.getServices());
         model.addAttribute("workTimeList", repo.getWorkTime());
 
-
         var errorItem = (String) session.getAttribute("error");
         session.removeAttribute("error");
-        model.addAttribute("error", errorItem == "true" ? true : false);
+        model.addAttribute("error", errorItem.equals("true"));
 
         var successItem = (String) session.getAttribute("success");
         session.removeAttribute("success");
-        model.addAttribute("success", successItem == "true" ? true : false);
+        // model.addAttribute("success", successItem == "true" ? true : false);
+        model.addAttribute("success", successItem.equals("true"));
 
         var messageItem = (String) session.getAttribute("message");
         session.removeAttribute("message");

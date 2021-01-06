@@ -14,11 +14,6 @@
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -79,7 +74,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/back/services" class="nav-link">
+                        <a href="/back/services" class="nav-link active">
                             <i class="nav-icon far fa-address-book"></i>
                             <p>
                                 Services
@@ -87,7 +82,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/back/schedules" class="nav-link active">
+                        <a href="/back/schedules" class="nav-link">
                             <i class="nav-icon far fa-clipboard"></i>
                             <p>
                                 Schedule
@@ -119,84 +114,55 @@
                 <div class="row">
                     <div class="col-12">
 
-                        <form action="/back/schedules/update" method="post" name="updateScheduleDto">
-                            <input type="hidden" name="id" th:value="${oldId}">
+                        <form action="/back/services/save" method="post" name="saveServiceDto">
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label>Select Day</label>
-                                        <select class="form-control" name="day" required>
-                                            <option value="1" th:selected="${oldDayId == 1}">Monday</option>
-                                            <option value="2" th:selected="${oldDayId == 2}">Tuesday</option>
-                                            <option value="3" th:selected="${oldDayId == 3}">Wednesday</option>
-                                            <option value="4" th:selected="${oldDayId == 4}">Thursday</option>
-                                            <option value="5" th:selected="${oldDayId == 5}">Friday</option>
-                                            <option value="6" th:selected="${oldDayId == 6}">Saturday</option>
-                                            <option value="7" th:selected="${oldDayId == 7}">Sunday</option>
-                                        </select>
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <!--input start time-->
                                     <div class="form-group">
-                                        <label>Start time</label>
-
-                                        <div class="input-group date" id="starttime" data-target-input="nearest">
-                                            <input th:value="${oldStartTime}" type="text" class="form-control datetimepicker-input timepicker"
-                                                   data-target="#starttime" name="startTime" required>
-                                            <div class="input-group-append" data-target="#starttime"
-                                                 data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                            </div>
-                                        </div>
-                                        <!-- /.input group -->
+                                        <label for="duration" class="form-label">Duration</label>
+                                        <input type="number" class="form-control" name="duration" id="duration" placeholder="Duration (minutes)" required min="0">
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <!--input end time-->
                                     <div class="form-group">
-                                        <label>End time</label>
-
-                                        <div class="input-group date" id="endtime" data-target-input="nearest">
-                                            <input th:value="${oldEndTime}" type="text" class="form-control datetimepicker-input timepicker"
-                                                   data-target="#endtime" name="endTime" required>
-                                            <div class="input-group-append" data-target="#endtime"
-                                                 data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="far fa-clock"></i></div>
-                                            </div>
-                                        </div>
-                                        <!-- /.input group -->
+                                        <label for="price" class="form-label">Price</label>
+                                        <input type="number" class="form-control" name="price" id="price" min="0.00" step="0.01" placeholder="Price (euros)" required>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </form>
-
                     </div>
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer no-print">
-        <div class="float-right d-none d-sm-block">
-            <b>Version</b> 3.0.5
-        </div>
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-        reserved.
-    </footer>
+                    <!-- /.row -->
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-    </aside>
-    <!-- /.control-sidebar -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<footer class="main-footer no-print">
+    <div class="float-right d-none d-sm-block">
+        <b>Version</b> 3.0.5
+    </div>
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
+    reserved.
+</footer>
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -206,12 +172,7 @@
 <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
-<!-- Select2 -->
-<script src="/plugins/select2/js/select2.full.min.js"></script>
-<!-- date-range-picker -->
-<script src="/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
-
 </body>
 </html>

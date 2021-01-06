@@ -17,6 +17,7 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
+
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
         <!-- Left navbar links -->
@@ -48,7 +49,8 @@
             <!-- Sidebar user (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" th:text="${employeeName}" class="d-block"></a>
+                    <span th:text="${'Welcome, ' +employeeName + '!'}" class="d-block"
+                          style="font-weight: bold; color: #ffffff"></span>
                 </div>
             </div>
 
@@ -121,7 +123,6 @@
                                     <table class="table table-striped">
                                         <thead class="border-bottom border-dark">
                                         <tr>
-                                            <th>Id</th>
                                             <th>Client Name</th>
                                             <th>Client Contacts</th>
                                             <th>Start Time</th>
@@ -132,7 +133,6 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="appointment: ${appointments}">
-                                            <td th:text="${appointment.getId()}"/>
                                             <td th:text="${appointment.getClientName()}"/>
                                             <td th:utext="${appointment.getClientFullContacts()}"/>
                                             <td th:text="${appointment.getVStartTime()}"/>

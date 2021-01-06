@@ -1,14 +1,11 @@
 package com.company.springmvcweb.data.model;
 
-
-
 import com.company.springmvcweb.data.helper.Helper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 
 @Data
 @AllArgsConstructor
@@ -50,7 +47,6 @@ public class Appointment {
     @ManyToOne(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id", insertable = false, updatable = false)
     private Employee employee;
-
 
 
     public String getClientFullContacts() {
