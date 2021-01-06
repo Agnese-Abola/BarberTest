@@ -34,12 +34,11 @@ public class FrontendController {
 
         var errorItem = (String) session.getAttribute("error");
         session.removeAttribute("error");
-        model.addAttribute("error", errorItem.equals("true"));
+        model.addAttribute("error", errorItem == "true" ? true : false);
 
         var successItem = (String) session.getAttribute("success");
         session.removeAttribute("success");
-        // model.addAttribute("success", successItem == "true" ? true : false);
-        model.addAttribute("success", successItem.equals("true"));
+        model.addAttribute("success", successItem == "true" ? true : false);
 
         var messageItem = (String) session.getAttribute("message");
         session.removeAttribute("message");
